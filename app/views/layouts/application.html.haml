@@ -22,4 +22,10 @@
             %li= link_to "<span class='icon favorites'></span>Favorites (0)".html_safe, '#'
             %li= link_to "<span class='icon features'></span>Features".html_safe, '#'
             %li= link_to "Get Listed!", "#", class: "get_listed"
-      = yield
+        - if controller_name == 'home' 
+          - if params[:action] == 'index'
+            %strong.home_leader Siftlaw makes finding the right legal partner a snap!
+          = render partial: 'shared/home_nav'
+      #main= yield
+      .push
+    = render 'shared/footer'

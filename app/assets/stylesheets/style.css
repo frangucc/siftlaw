@@ -504,6 +504,7 @@ textarea:focus {
   display: none;
   top: 34px;
   left: 0;
+  z-index: 1;
 }
 #header .sub_nav > span span.wrapper span {
   display: inline-block;

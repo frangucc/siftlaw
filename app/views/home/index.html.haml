@@ -1,0 +1,30 @@
+%ul.featured
+  - 7.times do
+    %li
+      %ul.links
+        %li= link_to 'Favorites This', '#', class: 'favorite', title: 'Favorite This'
+        %li= link_to 'Contact Firm', '#', class: 'contact', title: 'Contact Firm'
+        %li= link_to "Firm's Website", '#', class: 'favorite', title: "Firm's Website"
+      = link_to "<span class='wrapper'><img src='../assets/pic.jpg' alt='pic'><h3>Vorm and Vorm Assoc.</h3><address>2345 N. Main Street, Chicago IL</address><span>$3,000 and under</span><hr><span>Criminal Law, Patent Law, Copyrights</span></span>".html_safe, "#vormandvorm.php"
+  %li.prompt
+    %div
+      %span
+    %span.logo   
+    %h2 Join our Community and showcase your business right here!
+    %ul
+      %li
+        %strong Be seen
+        You get a large listing that appears above free listings
+      %li
+        %strong Multiple photos
+        Get visual by adding up to 12 high resolution photos
+      %li
+        %strong Custom web address
+        Choose your link name: galaist.com/my-company better for sharing.
+      %li
+        %strong No obligation
+        No contracts, you can bump down to free at any time!
+%ul.full_list
+  - 20.times do
+    %li
+      = link_to "<h4><span class='icon star'></span>Vorm and Vorm Assoc.</h4><img src='../assets/pic-small.jpg' alt='pic'><div><strong>Chicago</strong><span>$3,000 and under</span><span>Criminal Law</span></div>".html_safe, "#"
