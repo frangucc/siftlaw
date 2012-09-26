@@ -1,0 +1,22 @@
+#main.wide_side
+  ~ form_for resource, as: resource_name, url: session_path(resource_name), html: {class: 'basic login validate'} do |f|
+    = notice
+    = alert
+    %h2 Login
+    %p 
+      Don't have ab account?
+      = link_to 'Create one', new_registration_path(:user)
+      to save your favorites and more! Or not listed yet? Easily build your profile and
+      = link_to 'get listed', '#'
+      today, its free!
+    %ul
+      %li
+        %label{for: 'email'} Email
+        = f.email_field :email, class: 'required'
+      %li.final_full
+        %label{for: 'password'} Password:
+        = f.password_field :password, class: 'required'
+      %li.half.left
+        = link_to 'forgot password?', new_password_path(resource_name)
+      %li.half.right
+        = f.submit 'Sign In'

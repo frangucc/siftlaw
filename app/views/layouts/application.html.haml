@@ -11,12 +11,18 @@
         %h1=link_to "SiftLaw", '/'
         .top
           .login
-            = link_to 'Login', '#'
-            = link_to 'Sign Up', '#'
+            - if user_signed_in?
+              hi #{current_user.name}
+              |
+              = link_to 'Logout', destroy_user_session_path, :method => :delete
+            - else
+              = link_to 'Login', new_session_path(:user)
+              |
+              = link_to 'Sign Up', new_registration_path(:user)
           %p.trial
             %span.icon
             = link_to 'Try us out:', '#'
-            Get a Pro account <u>free</u> for 30 days!
+            Get a PRO account <u>free</u> for 30 days!
           %ul.nav
             %li= link_to "<span class='icon cities'></span>Cities".html_safe, cities_path
             %li= link_to "<span class='icon favorites'></span>Favorites (0)".html_safe, '#'
@@ -26,6 +32,6 @@
           - if params[:action] == 'index'
             %strong.home_leader Siftlaw makes finding the right legal partner a snap!
           = render partial: 'shared/home_nav'
-      #main= yield
+      = yield
       .push
     = render 'shared/footer'

@@ -1,0 +1,17 @@
+#main
+  #choose_type.signup
+    %h2 Sign up with us and join our large community!
+    %p Are you a <strong>user</strong> or a <strong>company</strong>?
+    .two_links
+      = link_to 'I am a user!', '#signup_user', class: 'switcher'
+      = link_to 'I am a company!', '#signup_com', class: 'switcher'
+  #signup_user.hidden= render 'user_form'
+  
+:javascript
+  $(document).ready(function(){
+    $('.switcher').click(function(){
+      $('#choose_type').addClass('hidden');
+      $($(this).attr('href')).removeClass('hidden');
+    });
+  })
+  

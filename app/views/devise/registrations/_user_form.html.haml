@@ -1,0 +1,30 @@
+.page_header
+  %h2
+    %span.icon.person
+    Sign Up User
+~ form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "basic publish validate"}) do |f|
+  = devise_error_messages!
+  %p Please Enter your infomation
+  %ul
+    %li.half.left
+      %label{for: 'name'}
+        Your name:
+        %span.required *
+      = f.text_field :name, class: 'required'
+    %li.half.right
+      %label{for: 'password'}
+        Password:
+        %span.required *
+      = f.password_field :password, class: 'required'
+    %li.half.left
+      %label{for: 'email'}
+        Email:
+        %span.required *
+      = f.email_field :email, class: 'required'
+    %li.half.right
+      %label{for: 'password_confirmation'}
+        Comfirm Password:
+        %span.required *
+      = f.password_field :password_confirmation, class: 'required'
+    %li
+      = f.submit 'Submit'

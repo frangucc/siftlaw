@@ -1,20 +1,21 @@
-.page_header
-  %h2
-    .span.icon.bigmap
-    Popular Cities
-%ul.places.cities
-  - (@popular_cities.length/3).times do |i|
-    %li
-      %ul
-        - 3.times do |j|
-          %li= link_to @popular_cities[j + i*3], "#"
-.page_header
-  %h2
-    .span.icon.state
-    All States
-%ul.places.states
-  - (@states.length/10).times do |i|
-    %li
-      %ul
-        - 10.times do |j|
-          %li= link_to @states[j + i*10], "#"
+#main
+  .page_header
+    %h2
+      .span.icon.bigmap
+      Popular Cities
+  %ul.places.cities
+    - (@popular_cities.length/3).times do |i|
+      %li
+        %ul
+          - 3.times do |j|
+            %li= link_to @popular_cities[j + i*3], "#"
+  .page_header
+    %h2
+      .span.icon.state
+      All States
+  %ul.places.states
+    - (@states.length/10).times do |i|
+      %li
+        %ul
+          - 10.times do |j|
+            %li= link_to @states[j + i*10], "#"
