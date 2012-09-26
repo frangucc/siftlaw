@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'carmen'
 gem 'devise'
 gem 'haml'
 gem 'jquery-rails'
