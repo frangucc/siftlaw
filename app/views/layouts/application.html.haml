@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title SiftLaw
+    = stylesheet_link_tag    "application", :media => "all" 
+    = javascript_include_tag "application" 
+    = csrf_meta_tags 
+  %body
+    #wrapper
+      #header
+        %h1=link_to "SiftLaw", '/'
+        .top
+          .login
+            = link_to 'Login', '#'
+            = link_to 'Sign Up', '#'
+          %p.trial
+            %span.icon
+            = link_to 'Try us out:', '#'
+            Get a Pro account <u>free</u> for 30 days!
+          %ul.nav
+            %li= link_to "<span class='icon cities'></span>Cities".html_safe, '#'
+            %li= link_to "<span class='icon favorites'></span>Favorites (0)".html_safe, '#'
+            %li= link_to "<span class='icon features'></span>Features".html_safe, '#'
+            %li= link_to "Get Listed!", "#", class: "get_listed"
+      = yield
