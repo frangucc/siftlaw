@@ -1,12 +1,12 @@
 #main
   %ul.featured
-    - 7.times do
+    - @pro_listings.each do |company|
       %li
         %ul.links
           %li= link_to 'Favorites This', '#', class: 'favorite', title: 'Favorite This'
           %li= link_to 'Contact Firm', '#', class: 'contact', title: 'Contact Firm'
           %li= link_to "Firm's Website", '#', class: 'website', title: "Firm's Website"
-        = link_to "<span class='wrapper'><img src='../assets/pic.jpg' alt='pic'><h3>Vorm and Vorm Assoc.</h3><address>2345 N. Main Street, Chicago IL</address><span>$3,000 and under</span><hr><span>Criminal Law, Patent Law, Copyrights</span></span>".html_safe, "#vormandvorm.php"
+        = link_to "<span class='wrapper'><img src='../assets/pic.jpg' alt='pic'><h3>#{company.name}</h3><address>#{company.address}, #{company.city} #{company.state}</address><span>#{company.budget}</span><hr><span>#{company.primary_category}</span></span>".html_safe, "#vormandvorm.php"
     %li.prompt
       %div
         %span
@@ -26,6 +26,6 @@
           %strong No obligation
           No contracts, you can bump down to free at any time!
   %ul.full_list
-    - 20.times do
+    - @free_listings.each do |company|
       %li
-        = link_to "<h4><span class='icon star'></span>Vorm and Vorm Assoc.</h4><img src='../assets/pic-small.jpg' alt='pic'><div><strong>Chicago</strong><span>$3,000 and under</span><span>Criminal Law</span></div>".html_safe, "#"
+        = link_to "<h4><span class='icon star'></span>#{company.name}</h4><img src='../assets/pic-small.jpg' alt='pic'><div><strong>#{company.city}</strong><span>#{company.budget}</span><span>#{company.primary_category}</span></div>".html_safe, "#"
