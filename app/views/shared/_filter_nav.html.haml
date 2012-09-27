@@ -1,7 +1,7 @@
 .sub_nav
   Showing attorneys in
   %span
-    %strong Any City
+    %strong= @company ? @company.city : 'Any City'
     %span.wrapper
       %span
       %ul
@@ -17,7 +17,7 @@
         %li= link_to "<strong>See all locations</strong>".html_safe, '#'
   listed under
   %span
-    %strong Any Category
+    %strong= @company ? @company.primary_category : 'Any Category'
     %span.wrapper
       %span
       %ul
@@ -38,7 +38,7 @@
         %li= link_to "<strong>See all locations</strong>".html_safe, '#'
   for
   %span
-    %strong Any Buget
+    %strong= @company ? @company.budget : 'Any Budget'
     %span.wrapper
       %span
       %ul

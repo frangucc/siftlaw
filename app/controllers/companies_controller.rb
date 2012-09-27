@@ -24,4 +24,9 @@ class CompaniesController < ApplicationController
     end
   end
   
+  def show
+    @company = Company.find(params[:id])
+    @filter_nav = true
+  end
+  
 end
