@@ -5,7 +5,11 @@ SiftLaw::Application.routes.draw do
     get "login", :to => "devise/sessions#new"
   end
   
-  resources :companies
+  resources :companies do
+    member do
+      get :profile
+    end
+  end
   resources :users
   
   get "cities/index", as: "cities"

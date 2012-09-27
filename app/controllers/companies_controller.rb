@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_filter :authenticate_user!, except: [:new, :create, :show]
   def new
     @step = '1'
     @company = Company.new
@@ -24,9 +25,24 @@ class CompaniesController < ApplicationController
     end
   end
   
+  def profile
+    @company = current_user.company || Company.find(params[:id])
+  end
+  
   def show
     @company = Company.find(params[:id])
     @filter_nav = true
+  end
+  
+  def update
+    @company = current_user.company || Company.find(params[:id])
+    if @company.update_attributes(params[:company])
+      redirect_to profile_company_path(@company)
+      flash[:notice] = "updated company profile successfully"
+    else
+      @errors = @company.errors.full_messages
+      render :profile
+    end
   end
   
 end

@@ -1,4 +1,5 @@
 .error_summary
+  %span{style: "color: green"}= notice
   - unless @errors.blank?
     - @errors.each do |msg|
       = msg
@@ -44,7 +45,7 @@
       %label{for: 'company_website'}
         Website:
       = f.text_field :website
-    %li.haft
+    %li.half
       %label{for: 'company_phone'}
         Phone:
       = f.text_field :phone
@@ -53,7 +54,7 @@
       = link_to 'Save and Continue', '#', id: 'save_profile'
       %span or
       = link_to 'Upgrade to PRO!', '#'
-  - else
+  - elsif @step == '2'
     %p Now, select your email and password to complete signup and you’re done!
     %ul
       %li.half.left
@@ -76,5 +77,9 @@
           Comfirm Password:
           %span.required *
         = password_field :user, :password_confirmation, class: 'required'
-      %li
+      %li      
         = f.submit 'Create my Listing!'
+  - else
+    %li.save
+      = submit_tag "Save Changes", class: 'dblue_btn'
+          
