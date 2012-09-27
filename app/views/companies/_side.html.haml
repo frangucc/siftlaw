@@ -1,0 +1,46 @@
+.side
+  .new_profile.info
+    %h3 Your FREE listing will look like this:
+    %p Everyone gets a small listing card. Yours is shown below. You can get a bigger card, more images, and better placement when you upgrade to <a href="">Pro</a>.
+    .small_listing
+      %h4
+        %span.icon.star
+        Your Business Name
+      = image_tag "../assets/small_listing_pic.png", alt: 'pic'
+      %div
+        %strong Location
+        %span Buget Range
+        %span Category
+    ~ form_tag do
+      %div
+        = file_field_tag :file
+        %p Upload a 635x444 JPG or PNG
+      = submit_tag 'upload'
+    %h3.upgrade_pro
+      %span.icon.darkstar
+      .text or Upgrade to PRO listing!
+    %strong.pro for only $149 a month
+    .big_image
+    .card.small_listing
+      %h4 Your Company Name
+      %address Address
+      Budget Range
+      %hr
+      Category
+    %h3.why_pro Why go PRO?
+    %ul.pro_perks
+      %li
+        %span.star.icon
+        Large Display Photo
+      %li
+        %span.star.icon
+        Reports
+      %li
+        %span.star.icon
+        Custom web address
+      %li
+        %span.star.icon
+        No obligation
+      %li
+        %span.star.icon
+        Multiple photos

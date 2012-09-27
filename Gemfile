@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+gem 'friendly_id'
 gem 'haml'
 gem 'jquery-rails'
 gem 'mysql2'

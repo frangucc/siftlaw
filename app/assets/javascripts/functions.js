@@ -39,9 +39,11 @@ $(document).ready(function() {
                           .removeClass('label-error');
         },
         showErrors: function(errorMap, errorList) {
-            $(".error_summary").html("Your form contains "
-                                           + this.numberOfInvalids() 
-                                           + " errors, see details below.");
+            if(this.numberOfInvalids() != 0){
+              $(".error_summary").html("Your form contains "
+                                             + this.numberOfInvalids() 
+                                             + " errors, see details below.");
+            }
             this.defaultShowErrors();
         },
         rules: {

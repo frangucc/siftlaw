@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926135336) do
+ActiveRecord::Schema.define(:version => 20120927035431) do
+
+  create_table "companies", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "primary_category"
+    t.string   "budget"
+    t.text     "about"
+    t.string   "city"
+    t.string   "state"
+    t.string   "address"
+    t.string   "website"
+    t.string   "phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "companies", ["user_id"], :name => "index_companies_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -27,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120926135336) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

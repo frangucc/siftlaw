@@ -1,0 +1,80 @@
+.error_summary
+  - unless @errors.blank?
+    - @errors.each do |msg|
+      = msg
+      %br
+~ form_for @company, html: {class: "validate #{'basic publish' if @step=='2'}", id: 'create_profile_form'} do |f|
+  = hidden_field_tag :step, @step
+  %ul{class: "#{'hidden' if @step=='2'}"}
+    %li
+      %label{for: 'company_name'}
+        Company name:
+        %span.required *
+      = f.text_field :name, class: 'required'
+    %li.half.left
+      %label{for: 'company_primary_category'}
+        Primary Business Category:
+        %span.required *
+      = f.select :primary_category, options_for_select(Common.categories), class: 'required'
+    %li.half.right
+      %label{for: 'company_buget'}
+        Business Budget:
+        %span.required *
+      = f.select :budget, options_for_select(Common.budgets), class: 'required'
+    %li
+      %label{for: 'company_about'}
+        About Company:
+        %span.required *
+      = f.text_area :about, class: 'required'
+    %li.half.left
+      %label{for: 'company_city'}
+        City:
+        %span.required *
+      = f.text_field :city, class: 'required'
+    %li.half.right
+      %label{for: 'company_state'}
+        State:
+        %span.required *
+      = f.select :state, options_for_select(StateCity.states), class: 'required'
+    %li
+      %label{for: 'company_address'}
+        Address:
+      = f.text_field :address
+    %li
+      %label{for: 'company_website'}
+        Website:
+      = f.text_field :website
+    %li.haft
+      %label{for: 'company_phone'}
+        Phone:
+      = f.text_field :phone
+  - if @step == '1'
+    .two_links
+      = link_to 'Save and Continue', '#', id: 'save_profile'
+      %span or
+      = link_to 'Upgrade to PRO!', '#'
+  - else
+    %p Now, select your email and password to complete signup and you’re done!
+    %ul
+      %li.half.left
+        %label{for: 'user_name'}
+          Your name:
+          %span.required *
+        = text_field :user, :name, class: 'required'
+      %li.half.right
+        %label{for: 'user_password'}
+          Password:
+          %span.required *
+        = password_field :user, :password, class: 'required'
+      %li.half.left
+        %label{for: 'user_email'}
+          Email:
+          %span.required *
+        = email_field :user, :email, class: 'required'
+      %li.half.right
+        %label{for: 'user_password_confirmation'}
+          Comfirm Password:
+          %span.required *
+        = password_field :user, :password_confirmation, class: 'required'
+      %li
+        = f.submit 'Create my Listing!'

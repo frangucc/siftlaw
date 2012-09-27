@@ -1,0 +1,14 @@
+#main
+  .page_header
+    %h2
+      %span.icon.person
+      - if @step == '1'
+        Create your Company Profile
+      - else
+        Publish Listing
+  - if @step == '1'
+    .content
+      = render partial: 'form'
+    = render partial: 'side'
+  - else
+    = render partial: 'form'

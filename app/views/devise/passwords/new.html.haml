@@ -1,12 +1,12 @@
 #main.wide_side
-  ~ form_for resource, as: resource_name, url: password_path(resource_name), html: {class: 'basic login validate', method: :post} do |f|
+  ~ form_for resource, as: resource_name, url: password_path(resource_name), html: {class: 'basic forgot validate', method: :post} do |f|
     %h2 Forgot your password?
     = devise_error_messages!
     %p 
-      Enter your registered email, we will send you reset instructions
+      Please enter your email and we will send you an email with further instructions
     %ul
-      %li
+      %li.half.left
         %label{for: 'email'} Email
         = f.email_field :email, class: 'required'
       %li.half.right
-        = f.submit 'Send'
+        = f.submit 'Send Instructions'
