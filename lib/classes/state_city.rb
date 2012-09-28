@@ -1,4 +1,5 @@
 class StateCity
+  
   def self.popular_cities
     ['Chicago', 'Charlotte', 'San Diego', 'New York', 'Phoenix', 'Indianapolis', 'Los Angeles', 'San Francisco', 'Columbus', 'Philadelphia', 'Washington', 'Portland', 'San Antonio', 'Las Vegas', 'Long Beach']
   end

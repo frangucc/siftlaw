@@ -24,5 +24,7 @@ SiftLaw::Application.routes.draw do
   get "favorites/index", as: "favorites"
   get 'home/index'
   
+  match 'search' => 'home#search', as: "search"
+  
   root :to => 'home#index'
 end

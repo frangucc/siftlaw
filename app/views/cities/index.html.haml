@@ -8,7 +8,7 @@
       %li
         %ul
           - 3.times do |j|
-            %li= link_to @popular_cities[j + i*3], "#"
+            %li= link_to @popular_cities[j + i*3], search_path(city: @popular_cities[j + i*3])
   .page_header
     %h2
       .span.icon.state
@@ -18,4 +18,4 @@
       %li
         %ul
           - 10.times do |j|
-            %li= link_to @states[j + i*10], "#"
+            %li= link_to @states[j + i*10], search_path(state: @states[j + i*10])

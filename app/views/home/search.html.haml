@@ -1,0 +1,19 @@
+#main
+  - if(@pro_listings.size + @free_listings.size) > 0
+    %ul.featured
+      - @pro_listings.each do |company|
+        %li
+          %ul.links
+            %li= link_to 'Favorites This', favorite_company_path(company), class: 'favorite', title: 'Favorite This'
+            %li= link_to 'Contact Firm', '#', class: 'contact', title: 'Contact Firm'
+            %li= link_to "Firm's Website", '#', class: 'website', title: "Firm's Website"
+          = link_to "<span class='wrapper'><img src='../assets/pic.jpg' alt='pic'><h3>#{company.name}</h3><address>#{company.address}, #{company.city} #{company.state}</address><span>#{company.budget}</span><hr><span>#{company.primary_category}</span></span>".html_safe, company_path(company)
+    %ul.full_list
+      - @free_listings.each do |company|
+        %li
+          = link_to "<h4><span class='icon star'></span>#{company.name}</h4><img src='../assets/pic-small.jpg' alt='pic'><div><strong>#{company.city}</strong><span>#{company.budget}</span><span>#{company.primary_category}</span></div>".html_safe, company_path(company)
+  - else
+    .no_results
+      %strong Sorry! No listings found.
+      %p We didn't find anything for your request.
+      %span.icon.scales

@@ -7,25 +7,25 @@
       %li= link_to "<span class='icon favourite'></span>Favourite".html_safe, "#"
   .content
     = image_tag "../assets/single-pic.jpg", alt: '', class: 'main bordered'
-    %p= @company.about.html_safe
+    %p= simple_format @company.about
   .side
     .featured
       .featured_item
         %ul.links
-          %li= link_to 'Favorite This', '#', title: 'Favorite This', class: 'favorite'
+          %li= link_to 'Favorite This', favorite_company_path(@company), title: 'Favorite This', class: 'favorite'
           %li= link_to 'Contact Firm', '#', title: 'Contact Firm', class: 'contact'
           %li= link_to "Firm's Website", '#', title: "Firm's Website", class: 'website'
         .inner
           %h3= @company.name
           %hr
           %h4 Category:
-          = link_to @company.primary_category, "#"
+          = link_to @company.primary_category, search_path(category: @company.primary_category)
           %hr
           %h4 Budget:
-          = link_to @company.budget, "#"
+          = link_to @company.budget, search_path(budget: @company.budget)
           %hr
           %h4 Location:
-          = link_to @company.city, "#"
+          = link_to @company.city, search_path(city: @company.city)
           %br
           %h4 Address:
           %address= @company.address
