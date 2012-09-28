@@ -1,4 +1,6 @@
 SiftLaw::Application.routes.draw do
+  get "favorites/index"
+
   devise_for :users
   
   devise_scope :user do
@@ -7,13 +9,19 @@ SiftLaw::Application.routes.draw do
   
   resources :companies do
     member do
+      get :favorite
       get :profile
     end
   end
-  resources :users
+  
+  resources :users do
+    collection do
+      get "delete_favorites"
+    end
+  end
   
   get "cities/index", as: "cities"
-
+  get "favorites/index", as: "favorites"
   get 'home/index'
   
   root :to => 'home#index'

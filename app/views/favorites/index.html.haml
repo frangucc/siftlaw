@@ -1,0 +1,16 @@
+#main.favorites
+  .page_header
+    %h2
+      %span.icon.heart
+      Favorites
+    %ul
+      %li= link_to "<span class='icon delete'></span>Delete All".html_safe, delete_favorites_users_path, confirm: 'Are you sure to delete all favorites?'
+      %li= link_to "<span class='icon print'></span>Print".html_safe, "#"
+  - @categories.each do |category|
+    - coms = @companies.select{|com| com.primary_category==category}
+    %h3
+      = category
+      %span (#{coms.size}) 
+    %ul.full_list
+      - coms.each do |company|
+        %li= link_to "<h4><span class='icon star'></span>#{company.name}</h4><img src='../assets/pic-small.jpg' alt='pic'><div><strong>#{company.city}</strong><span>#{company.budget}</span><span>#{category}</span></div>".html_safe, company_path(company)

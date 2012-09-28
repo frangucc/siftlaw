@@ -28,7 +28,7 @@
             Get a PRO account <u>free</u> for 30 days!
           %ul.nav
             %li= link_to "<span class='icon cities'></span>Cities".html_safe, cities_path
-            %li= link_to "<span class='icon favorites'></span>Favorites (0)".html_safe, '#'
+            %li= link_to "<span class='icon favorites'></span>Favorites (#{current_user ? current_user.favorites.size : 0})".html_safe, favorites_path
             %li= link_to "<span class='icon features'></span>Features".html_safe, '#'
             %li= link_to "Get Listed!", "#", class: "get_listed"
         - if controller_name == 'home'

@@ -1,9 +1,5 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, except: [:new, :create, :show]
-  def new
-    @step = '1'
-    @company = Company.new
-  end
   
   def create
     @company = Company.new(params[:company])
@@ -23,6 +19,17 @@ class CompaniesController < ApplicationController
         render :new
       end
     end
+  end
+  
+  def favorite
+    @company = Company.find params[:id]
+    current_user.favorites.create(company_id: @company.id)
+    redirect_to favorites_path
+  end
+  
+  def new
+    @step = '1'
+    @company = Company.new
   end
   
   def profile
