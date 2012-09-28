@@ -5,6 +5,7 @@ gem 'friendly_id'
 gem 'haml'
 gem 'jquery-rails'
 gem 'mysql2'
+gem 'paperclip'
 gem 'rails', '3.2.8'
 
 group :assets do

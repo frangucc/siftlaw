@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
   
   def create
     @company = Company.new(params[:company])
+    @portfolio_id = params[:portfolio_id]
     if params[:step] == '1'
       @step = '2'
       render :new
@@ -11,6 +12,10 @@ class CompaniesController < ApplicationController
       if @user.save
         @company.user = @user
         @company.save
+        unless @portfolio_id.blank?
+          portfolio = Portfolio.find(@portfolio_id)
+          @company.portfolios << portfolio
+        end
         sign_in(:user, @user)
         redirect_to root_path
       else

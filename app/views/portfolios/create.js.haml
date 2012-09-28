@@ -1,0 +1,4 @@
+- if @errors.blank?
+  $('#portfolio-placeholder').html("#{escape_javascript(hidden_field_tag :portfolio_id, @portfolio.id)}");
+- else
+  $('#upload_msg').html("#{escape_javascript(render partial: 'shared/errors')}");

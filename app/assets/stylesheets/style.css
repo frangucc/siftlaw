@@ -673,6 +673,7 @@ textarea:focus {
 .featured > li > div.inner img,
 .featured .featured_item > div.inner img {
   width: 263px;
+  height: 163px;
 }
 .featured > li > a h3,
 .featured .featured_item > a h3,
@@ -1014,6 +1015,7 @@ ul.full_list li h4 span {
 ul.full_list li img {
   float: left;
   width: 86px;
+  height: 53px; 
 }
 ul.full_list li div {
   font-size: 12px;

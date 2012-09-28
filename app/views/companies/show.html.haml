@@ -6,7 +6,7 @@
       %li= link_to "<span class='icon print'></span>Print".html_safe, "#"
       %li= link_to "<span class='icon favourite'></span>Favourite".html_safe, "#"
   .content
-    = image_tag "../assets/single-pic.jpg", alt: '', class: 'main bordered'
+    = image_tag @company.image(:large), alt: '', class: 'main bordered'
     %p= simple_format @company.about
   .side
     .featured

@@ -14,6 +14,7 @@ SiftLaw::Application.routes.draw do
     end
   end
   
+  resources :portfolios
   resources :users do
     collection do
       get "delete_favorites"

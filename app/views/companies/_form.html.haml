@@ -5,6 +5,7 @@
       = msg
       %br
 ~ form_for @company, html: {class: "validate #{'basic publish' if @step=='2'}", id: 'create_profile_form'} do |f|
+  #portfolio-placeholder= hidden_field_tag :portfolio_id, @portfolio_id
   = hidden_field_tag :step, @step
   %ul{class: "#{'hidden' if @step=='2'}"}
     %li
