@@ -10,6 +10,7 @@ SiftLaw::Application.routes.draw do
   resources :companies do
     member do
       get :favorite
+      get :portfolio
       get :profile
     end
   end

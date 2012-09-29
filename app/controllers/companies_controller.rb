@@ -37,6 +37,10 @@ class CompaniesController < ApplicationController
     @company = Company.new
   end
   
+  def portfolio
+    @company = current_user.company || Company.find(params[:id])
+  end
+  
   def profile
     @company = current_user.company || Company.find(params[:id])
   end

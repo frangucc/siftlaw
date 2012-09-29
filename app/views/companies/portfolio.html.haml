@@ -1,0 +1,19 @@
+#main.profile
+  .content
+    .inner
+      .page_header
+        %h2
+          %span.icon.camera
+          Portfolio Images
+      %ul.portfolio_images
+        - @company.portfolios.each do |portfolio|
+          %li.bordered{class: "#{'active' if @company.image == portfolio.image.url}"}
+            = image_tag portfolio.image(:small), alt: 'pic'
+            = link_to 'delete', portfolio_path(portfolio), method: :delete,confirm: 'Are you sure to delete this portfolio?'
+        - x = 12 - @company.portfolios.size
+        - x.times do
+          %li.bordered
+            %p PRO members only
+        %li.save
+          = submit_tag 'Save Changes', class: 'dblue_btn'
+  = render partial: 'profile_side', locals: {active: 'portfolio'}
