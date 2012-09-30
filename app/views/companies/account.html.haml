@@ -1,0 +1,34 @@
+#main.profile.settings
+  .content
+    .inner
+      .page_header
+        %h2
+          %span.icon.gear
+          Account Settings
+      ~ form_for current_user, html: {class: "settings validate"} do |f|
+        %p Change account information password
+        - if notice
+          .notice{style: "color: green;"}= notice
+        .error{style: "color: red;"}
+          - unless @errors.blank?
+            - @errors.each do |msg|
+              = msg
+              %br
+        %ul
+          %li
+            %label{for: 'email'} Email:
+            = f.text_field :email, class: 'required'
+          %li
+            %label{for: 'password'} New Password:
+            = f.password_field :password
+          %li
+            %label{for: 'password_confirmation'} Confirm password:
+            = f.password_field :password_confirmation
+          %li.save
+            = f.submit "Save Changes", class: "dblue_btn"
+      %hr
+      %h4.cancel
+        = link_to 'Cancel my Siftlaw account', '#'
+      %p There is no undo for cancellation. Once your account is cancelled, all of the information in your account will be permanently deleted. This cannot be reversed.
+      = link_to 'Cancel my account', "#", class: 'cancel'
+  = render partial: '/companies/profile_side', locals: {active: 'setting'}

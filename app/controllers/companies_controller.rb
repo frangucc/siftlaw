@@ -1,6 +1,10 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, except: [:new, :create, :show]
   
+  def account
+  
+  end
+  
   def create
     @company = Company.new(params[:company])
     @portfolio_id = params[:portfolio_id]

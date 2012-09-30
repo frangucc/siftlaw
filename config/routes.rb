@@ -8,6 +8,9 @@ SiftLaw::Application.routes.draw do
   end
   
   resources :companies do
+    collection do
+      get :account
+    end
     member do
       get :favorite
       get :portfolio
