@@ -14,6 +14,7 @@ SiftLaw::Application.routes.draw do
   resources :companies do
     collection do
       get :account
+      get :upgrade
     end
     member do
       get :favorite

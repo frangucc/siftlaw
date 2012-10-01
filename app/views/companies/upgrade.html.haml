@@ -1,0 +1,10 @@
+#main.profile.settings
+  .content
+    .inner
+      .page_header
+        %h2
+          %span.icon.gear         
+          Upgrade to PRO!
+      ~ form_tag do
+        %p You can easily upgrade your account and get all the latest new features Siftlaw has to offer! You will be charged xxx per month for the upgrade.
+  = render partial: '/companies/profile_side', locals: {active: 'upgrade'}

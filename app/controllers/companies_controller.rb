@@ -65,4 +65,7 @@ class CompaniesController < ApplicationController
     end
   end
   
+  def upgrade
+  
+  end
 end

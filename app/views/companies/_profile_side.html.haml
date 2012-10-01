@@ -3,5 +3,5 @@
     %li= link_to 'Company Profile', profile_company_path(current_user.company), class: "#{'active' if active == 'profile'}" 
     %li= link_to 'Portfolio', portfolio_company_path(current_user.company), class: "#{'active' if active == 'portfolio'}" 
     %li= link_to 'Account Settings', account_companies_path, class: "#{'active' if active == 'setting'}" 
-    %li= link_to 'My Listing', "#"
-    %li= link_to 'Upgrade to PRO', "#", class: "#{'active' if active == 'upgrade'}" 
+    %li= link_to 'My Listing', company_path(current_user.company)
+    %li= link_to 'Upgrade to PRO', upgrade_companies_path, class: "#{'active' if active == 'upgrade'}" 

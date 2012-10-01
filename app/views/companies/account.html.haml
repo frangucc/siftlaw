@@ -6,7 +6,7 @@
           %span.icon.gear
           Account Settings
       ~ form_for current_user, html: {class: "settings validate"} do |f|
-        %p Change account information password
+        %p Change account information
         - if notice
           .notice{style: "color: green;"}= notice
         .error{style: "color: red;"}
