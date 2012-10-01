@@ -11,9 +11,13 @@
             = image_tag portfolio.image(:small), alt: 'pic'
             = link_to 'delete', portfolio_path(portfolio), method: :delete,confirm: 'Are you sure to delete this portfolio?'
         - x = 12 - @company.portfolios.size
-        - x.times do
+        - x.times do |i|
           %li.bordered
-            %p PRO members only
+            - if @company.is_pro? || x==12 && i==0
+              %p
+                %button{class: "dblue_btn upload_portfolio"} Upload
+            - else
+              %p PRO members only
         %li.save
           = submit_tag 'Save Changes', class: 'dblue_btn'
   = render partial: 'profile_side', locals: {active: 'portfolio'}

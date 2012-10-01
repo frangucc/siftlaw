@@ -12,6 +12,10 @@ class Company < ActiveRecord::Base
     portfolio ?  portfolio.image.url(type) : '../assets/side_camera.png'
   end
   
+  def is_pro?
+    return pro==true
+  end
+  
   def self.free_listings
     where(pro: nil) | where(pro: false)
   end
