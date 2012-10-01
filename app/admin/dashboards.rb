@@ -1,5 +1,20 @@
 ActiveAdmin::Dashboards.build do
-
+  
+  section "Recent Companies" do
+    ul do
+      Company.recent(5).collect do |com|
+        li link_to(com.name, admin_company_path(com))
+      end
+    end
+  end
+  
+  section "Recent Users" do
+    ul do
+      User.recent(5).collect do |user|
+        li link_to(user.name, admin_user_path(user))
+      end
+    end
+  end
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.

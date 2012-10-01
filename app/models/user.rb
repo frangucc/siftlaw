@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
   def favorited?(company)
     self.favorites.include?(company)
   end
+  
+  def self.recent(x)
+    order(:created_at).limit(x).reverse
+  end
+  
 end
