@@ -1,5 +1,6 @@
 ActiveAdmin.register Company do
-  #actions :all, :except => [:new]
+  actions :all, :except => [:new]
+  
   index do
     column :name
     column :primary_category

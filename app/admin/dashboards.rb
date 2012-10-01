@@ -1,6 +1,12 @@
 ActiveAdmin::Dashboards.build do
   
-  section "Recent Companies" do
+  section "Companies Summary" do
+    div do
+      "We have #{Company.count} companies registered."
+    end
+    div do 
+      "Recent Companies"
+    end
     ul do
       Company.recent(5).collect do |com|
         li link_to(com.name, admin_company_path(com))
@@ -8,7 +14,13 @@ ActiveAdmin::Dashboards.build do
     end
   end
   
-  section "Recent Users" do
+  section "Users Summary" do
+    div do
+      "We have #{User.count} users registered."
+    end
+    div do 
+      "Recent Users"
+    end
     ul do
       User.recent(5).collect do |user|
         li link_to(user.name, admin_user_path(user))
