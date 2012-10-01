@@ -17,12 +17,12 @@
       %label{for: 'company_primary_category'}
         Primary Business Category:
         %span.required *
-      = f.select :primary_category, options_for_select(Common.categories), class: 'required'
+      = f.select :primary_category, options_for_select(Common.categories, @company.primary_category), class: 'required'
     %li.half.right
       %label{for: 'company_buget'}
         Business Budget:
         %span.required *
-      = f.select :budget, options_for_select(Common.budgets), class: 'required'
+      = f.select :budget, options_for_select(Common.budgets, @company.budget), class: 'required'
     %li
       %label{for: 'company_about'}
         About Company:
@@ -37,7 +37,7 @@
       %label{for: 'company_state'}
         State:
         %span.required *
-      = f.select :state, options_for_select(StateCity.states), class: 'required'
+      = f.select :state, options_for_select(StateCity.states, @company.state), class: 'required'
     %li
       %label{for: 'company_address'}
         Address:
