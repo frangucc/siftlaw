@@ -1,0 +1,16 @@
+keys: &KEYS
+  access_key_id: AKIAJSWT7MY44B6EV2TQ
+  secret_access_key: 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
+
+development:
+  <<: *KEYS
+  bucket: siftlaw-development
+
+production:
+  <<: *KEYS
+  bucket: siftlaw-production
+
+test:
+  <<: *KEYS
+  bucket: siftlaw-test
+

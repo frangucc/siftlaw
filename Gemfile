@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activeadmin'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'devise'
 gem 'friendly_id'
 gem 'haml'
