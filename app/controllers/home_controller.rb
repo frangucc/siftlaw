@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @pro_listings = Company.all
-    @free_listings = Company.all
+    @pro_listings = Company.pro_listings
+    @free_listings = Company.free_listings
     @filter_nav = true
   end
   

@@ -11,6 +11,7 @@ ActiveAdmin.register Company do
     column "User" do |company|
       company.user.name
     end
+    column :pro
     default_actions
   end
   
@@ -33,6 +34,7 @@ ActiveAdmin.register Company do
       f.input :address
       f.input :website
       f.input :phone
+      f.input :pro
     end
     f.buttons
   end
