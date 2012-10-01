@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'activeadmin'
 gem 'devise'
 gem 'friendly_id'
 gem 'haml'
 gem 'jquery-rails'
+gem 'meta_search',    '>= 1.1.0.pre'
 gem 'mysql2'
 gem 'paperclip'
 gem 'rails', '3.2.8'
