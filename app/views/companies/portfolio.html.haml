@@ -18,6 +18,22 @@
                 %button{class: "dblue_btn upload_portfolio"} Upload
             - else
               %p PRO members only
-        %li.save
-          = submit_tag 'Save Changes', class: 'dblue_btn'
+
   = render partial: 'profile_side', locals: {active: 'portfolio'}
+.hidden
+  ~ form_for Portfolio.new, html: {mutipart: true} do |f|
+    = f.hidden_field :company_id, value: @company.id
+    = f.file_field :image
+
+:javascript
+  $(document).ready(function(){
+    $(".upload_portfolio").click(function(e){
+      e.preventDefault();
+      $("input[type=file]").click();
+    });
+    
+    $("input[type=file]").change(function(){
+      $("form#new_portfolio").submit();
+    });
+    
+  });

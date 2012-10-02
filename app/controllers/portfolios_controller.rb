@@ -2,7 +2,10 @@ class PortfoliosController < ApplicationController
   def create
     @portfolio = Portfolio.create(params[:portfolio])
     @errors = @portfolio.errors.full_messages
-    respond_to :js
+    respond_to do |format|
+      format.js
+      format.html {redirect_to portfolio_company_path(current_user.company)}
+    end
   end
   
   def destroy
