@@ -8,7 +8,7 @@
   .content
     = image_tag @company.image(:large), alt: '', class: 'main bordered'
     %p= simple_format @company.about
-    - if @company == current_user.company
+    - if current_user && @company == current_user.company
       = link_to "Back to my settings", profile_company_path, class: "dblue_btn back"
   .side
     .featured

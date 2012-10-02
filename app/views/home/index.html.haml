@@ -25,7 +25,10 @@
         %li
           %strong No obligation
           No contracts, you can bump down to free at any time!
-  %ul.full_list
-    - @free_listings.each do |company|
-      %li
-        = link_to "<h4><span class='icon star'></span>#{company.name}</h4><img src='#{company.image}' alt='pic'><div><strong>#{company.city}</strong><span>#{company.budget}</span><span>#{company.primary_category}</span></div>".html_safe, company_path(company)
+  - (@free_listings.size/4).times do |i|
+    - padding = i == 0 ? '10px' : '0'
+    %ul.full_list{style: "margin-top: 0; padding-top: #{padding};"}
+      - 4.times do |j|
+        - company = @free_listings[j + i*4]
+        %li
+          = link_to "<h4><span class='icon star'></span>#{company.name}</h4><img src='#{company.image}' alt='pic'><div><strong>#{company.city}</strong><span>#{company.budget}</span><span>#{company.primary_category}</span></div>".html_safe, company_path(company)
