@@ -5,7 +5,6 @@ ActiveAdmin.register Company do
     column :name
     column :primary_category
     column :budget
-    column :about
     column :city
     column :state
     column "User" do |company|

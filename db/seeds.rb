@@ -14,7 +14,7 @@
   user.save!
   puts "(#{i}) created user #{user.name} ...."
   unless user.company
-    company = Company.new(name: Faker::Company.name.split(",").first, primary_category: Common.categories[i], budget: Common.budgets[i%5])
+    company = Company.new(name: Faker::Company.name.split(",").first, primary_category: Common.categories[i%13], budget: Common.budgets[i%5])
     company.user = user
     company.city = Faker::Address.city
     company.state = Faker::Address.us_state
