@@ -178,6 +178,7 @@ DEPENDENCIES
   jquery-rails
   meta_search (>= 1.1.0.pre)
   mysql2
+  nokogiri
   paperclip
   pg
   rails (= 3.2.8)
