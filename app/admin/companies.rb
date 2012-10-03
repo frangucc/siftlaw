@@ -19,7 +19,7 @@ ActiveAdmin.register Company do
   filter :budget, as: :select, collection: Common.budgets
   filter :about
   filter :city
-  filter :state, as: :select, collection: StateCity.states
+  filter :state, as: :select, collection: StateCity.states.map{|state| [state[:name], state[:abbr]]}
   filter :address
 
   form do |f|
@@ -29,7 +29,7 @@ ActiveAdmin.register Company do
       f.input :budget, collection: Common.budgets
       f.input :about
       f.input :city
-      f.input :state, collection: StateCity.states
+      f.input :state, collection: StateCity.states.map{|state| [state[:name], state[:abbr]]}
       f.input :address
       f.input :website
       f.input :phone

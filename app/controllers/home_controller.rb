@@ -10,8 +10,9 @@ class HomeController < ApplicationController
     @category = params[:category]
     @budget = params[:budget]
     @state = params[:state]
-    @pro_listings = Company.where(query_hash)
-    @free_listings = Company.where(query_hash)
+    listings = Company.where(query_hash)
+    @pro_listings = listings.select{|com| com.pro==true}
+    @free_listings = listings.select{|com| com.pro.blank? || com.pro==false}
     @filter_nav = true
   end
   
