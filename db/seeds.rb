@@ -91,13 +91,9 @@ website_urls.each do |website_url|
       puts "   ....and company #{company.name}"
       unless image_url.blank?
         begin
-          open("#{Rails.root}/tmp/photo_#{i}.jpg", 'wb') do |file|
-            file << open(URI.escape(image_url), 'User-Agent'=>'ruby').read
-            company.portfolios.create(image: file)
-            puts "  ...created portfolio"
-          end
-          File.delete("tmp/photo_#{i}.jpg")
-          puts "  ...delete temp file"
+          portfolio = Portfolio.new(company_id: company.id)
+          portfolio.image_from_url(image_url)
+          portfolio.save
         rescue Exception => e
           puts e
         end

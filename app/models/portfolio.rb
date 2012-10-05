@@ -9,4 +9,8 @@ class Portfolio < ActiveRecord::Base
       
   validates_attachment_content_type :image,
     :content_type =>/image/, :message => "must be image of type: jpeg, jpg or png"
+    
+  def image_from_url(url)
+    self.image = URI.parse(url)
+  end
 end
