@@ -1,4 +1,6 @@
 - if @errors.blank?
   $('#portfolio-placeholder').html("#{escape_javascript(hidden_field_tag :portfolio_id, @portfolio.id)}");
+  $('.side .small_listing img').attr("src", "#{@portfolio.image.url}");
+  $('.side .pro_image').html("#{escape_javascript(render partial: 'companies/big_image', locals: {portfolio: @portfolio})}");
 - else
   $('#upload_msg').html("#{escape_javascript(render partial: 'shared/errors')}");

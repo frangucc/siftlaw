@@ -37,7 +37,7 @@
       %label{for: 'company_state'}
         State:
         %span.required *
-      = f.select :state, options_for_select(StateCity.states, @company.state), class: 'required'
+      = f.select :state, options_for_select(StateCity.states.map{|state| [state[:name], state[:abbr]]}, @company.state), class: 'required'
     %li
       %label{for: 'company_address'}
         Address:
