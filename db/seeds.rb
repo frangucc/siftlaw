@@ -91,7 +91,7 @@ website_urls.each do |website_url|
       puts "   ....and company #{company.name}"
       unless image_url.blank?
         begin
-          open("tmp/photo_#{i}.jpg", 'wb') do |file|
+          open("#{Rails.root}/tmp/photo_#{i}.jpg", 'wb') do |file|
             file << open(URI.escape(image_url), 'User-Agent'=>'ruby').read
             company.portfolios.create(image: file)
             puts "  ...created portfolio"
