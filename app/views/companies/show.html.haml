@@ -37,5 +37,17 @@
           %br
           %h4 Email:
           = @company.user.email
-    .bordered
-      =image_tag "../assets/single-map.jpg"   
+    .bordered#mymap{style: "width: 290px;height: 262px;"}
+      =#image_tag "../assets/single-map.jpg"
+:javascript
+  $(document).ready(function(){
+    $('#mymap').gmap3(
+       { action: 'addMarker',
+          address: "#{@company.address}, #{@company.city}",
+          map:{
+            center: true,
+            zoom: 16
+          }
+        }
+    );
+  });
