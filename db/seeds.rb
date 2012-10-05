@@ -30,24 +30,42 @@
 #end
 
 User.find_each(&:destroy)
-doc = Nokogiri::HTML.parse(open("http://ilf.isba.org/SearchReq.aspx?parea=ADMIN&county=COOK&zip=&city=+&APPNAME=ISBAWEB&ARGUMENTS=area%2Ccity%2Czip%2Ccounty%2C-A%2Crcount%2CLastnameFirst&PRGNAME=SNA_SEARCH&rcount=20&submit=Submit"))
+website_urls = ["http://www.yelp.com/search?cflt=lawyers&find_desc=&find_loc=Chicago%2C+IL#!", "http://www.yelp.com/search?find_desc=lawyers&find_loc=San+Diego%2C+CA&ns=1&ls=a2c67ebcec24d9ae", "http://www.yelp.com/search?find_desc=lawyers&find_loc=New+York%2C+NY&ns=1&ls=2b06c8573fc026aa"]
 i = 0
-doc.css('form#frmTest td a').each do |link|
-  if link['href'].include?('SelectedItem.aspx?')
-    details_url = "http://ilf.isba.org/#{link['href']}"
-    details_content = Nokogiri::HTML.parse(open(details_url))
-    user_name = details_content.css('table#proTab tr')[0].css('td')[0].content
-    user_mail = details_content.css('table#proTab tr')[5].css('td a')[0].content.gsub(' ', '')
-    com_name = details_content.css('table#proTab tr')[1].css('td')[0].content
-    address = details_content.css('table#proTab tr')[2].css('td')[0].children[0].content
-    city = details_content.css('table#proTab tr')[2].css('td')[0].children.last.content.split(',').first
-    state = details_content.css('table#proTab tr')[2].css('td')[0].children.last.content.split(',').last.split(' ').first
-    phone = details_content.css('table#proTab tr')[3].css('td')[0].content.gsub('Phone: ', '')
-    website = details_content.css('table#proTab tr')[6].css('td a')[0].content.gsub(' ', '')
-    cat_str = details_content.css('table#proTab tr')[15].css('td')[0].content
-    primary_category = "Personal Injury"
+website_urls.each do |website_url|
+  doc = Nokogiri::HTML.parse(open(website_url, 'User-Agent' => 'ruby'))
+  doc.css('.businessresult .media-story h4 a').each do |link|
+    details_url = "http://www.yelp.com#{link['href']}"
+    puts details_url
+    details_content = Nokogiri::HTML.parse(open(details_url, 'User-Agent' => 'ruby'))
+
+    user_name = details_content.css("#bizBox a#user_name")[0].content
+    user_mail = "#{user_name.gsub(' ', '_').gsub('.', '')}@siftlaw.com"
+    com_name = details_content.css("#bizBox #bizInfoHeader h1")[0].content.gsub("\n",'').gsub("\t",'')
+    address = details_content.css("#bizBox #bizInfoContent address span")[0].content
+    city = details_content.css("#bizBox #bizInfoContent address span")[1].content
+    state = details_content.css("#bizBox #bizInfoContent address span")[2].content
+    phone = details_content.css("#bizBox #bizInfoContent #bizPhone")[0].content
+    web_url = details_content.css("#bizBox #bizInfoContent #bizUrl")[0]
+    website = web_url ? web_url.content.gsub("\n","").gsub("\t", "").gsub(" ", "") : ''
+    about_sec = details_content.css("#about_this_biz .section")[0]
+    about = about_sec ? about_sec.content : ""
+    img_link = details_content.css('#bizBox #bizPhotos .photo-box a') || details_content.css("a#slide-viewer-all")
+    img_page = img_link ? "http://www.yelp.com#{img_link[0]["href"]}" : ""
+    image_url = ""
+    unless img_page.blank?
+      begin 
+        image_doc = Nokogiri::HTML.parse(open(img_page, 'User-Agent' => 'ruby'))
+        image_url = "http:#{image_doc.css('#selected-photo-main img')[0]["src"]}"
+      rescue
+        puts "... No image"
+      end
+    end
+    primary_category = "Collections"
+    cat_links = details_content.css("#bizBox #bizInfoContent #cat_display a")
+    cats = cat_links.map{|link| link.content.gsub("\n", "").gsub("\t","")}
     Common.categories.each do |cat|
-      if cat_str.include?(cat) || cat_str.include?(cat.split(' ').first)
+      if cats.include?(cat) || cats.include?(cat.split(' ').first)
         primary_category = cat
       end
     end
@@ -58,21 +76,34 @@ doc.css('form#frmTest td a').each do |link|
     user.password_confirmation = 'password'
     user.save!
     puts "(#{i}) created user #{user.name} ...."
-      
+        
     unless user.company
       company = Company.new(name: com_name, primary_category: primary_category, budget: Common.budgets[i%5])
       company.user = user
       company.city = city
       company.state = state
       company.address = address
-      company.about = cat_str
+      company.about = about
       company.phone = phone
       company.website = website
       company.pro = i < 7 ? true : false 
       company.save!
       puts "   ....and company #{company.name}"
-      company.portfolios.create(image: File.new("#{Rails.root}/app/assets/images/single-pic.jpg"))
+      unless image_url.blank?
+        begin
+          open("tmp/photo_#{i}.jpg", 'wb') do |file|
+            file << open(URI.escape(image_url), 'User-Agent'=>'ruby').read
+            company.portfolios.create(image: file)
+            puts "  ...created portfolio"
+          end
+          File.delete("tmp/photo_#{i}.jpg")
+          puts "  ...delete temp file"
+        rescue Exception => e
+          puts e
+        end
+      end
     end
     i += 1
+
   end
 end
