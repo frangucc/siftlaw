@@ -50,8 +50,8 @@ website_urls.each do |website_url|
     website = web_url ? web_url.content.gsub("\n","").gsub("\t", "").gsub(" ", "") : ''
     about_sec = details_content.css("#about_this_biz .section")[0]
     about = about_sec ? about_sec.content : ""
-    img_link = details_content.css('#bizBox #bizPhotos .photo-box a') || details_content.css("a#slide-viewer-all")
-    img_page = img_link ? "http://www.yelp.com#{img_link[0]["href"]}" : ""
+    img_link = details_content.css('#bizBox #bizPhotos .photo-box a')[0] || details_content.css("a#slide-viewer-all")[0]
+    img_page = img_link ? "http://www.yelp.com#{img_link["href"]}" : ""
     image_url = ""
     unless img_page.blank?
       begin 
