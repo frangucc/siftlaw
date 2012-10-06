@@ -1,8 +1,9 @@
 .hidden
   = link_to 'contact', "#contact_form", class: 'fancybox', id: "open_fancybox"
+  = link_to 'success', "#success_msg", class: 'fancybox', id: "open_message"
   #contact_form{style: 'width: 500px;'}
     %h2 Send Email
-    ~ form_tag send_contact_path, class: 'validate' do
+    ~ form_tag send_contact_path, class: 'validate', remote: true do
       = hidden_field_tag :to_email, to_email
       %ul
         %li
@@ -16,3 +17,5 @@
           = text_area_tag :content, '',  class: 'required'
         %li
           = submit_tag 'Send'
+  #success_msg{style: 'width: 350px;'}
+    %h3 Your email was sent successfully. Thank you!

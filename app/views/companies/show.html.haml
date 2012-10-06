@@ -2,7 +2,7 @@
   .page_header
     %h2= @company.name
     %ul
-      %li= link_to "<span class='icon contact'></span>Contact".html_safe, "#" 
+      %li= link_to "<span class='icon contact'></span>Contact".html_safe, "#contact_form", class: "fancybox"
       %li= link_to "<span class='icon print'></span>Print".html_safe, "#"
       %li= link_to "<span class='icon favourite'></span>Favourite".html_safe, "#"
   .content
@@ -15,7 +15,7 @@
       .featured_item
         %ul.links
           %li= link_to 'Favorite This', favorite_company_path(@company), title: 'Favorite This', class: 'favorite'
-          %li= link_to 'Contact Firm', '#', title: 'Contact Firm', class: 'contact'
+          %li= link_to 'Contact Firm', '#contact_form', title: 'Contact Firm', class: 'contact fancybox'
           %li= link_to "Firm's Website", '#', title: "Firm's Website", class: 'website'
         .inner
           %h3= @company.name
@@ -38,7 +38,8 @@
           %h4 Email:
           = @company.user.email
     .bordered#mymap{style: "width: 290px;height: 262px;"}
-      =#image_tag "../assets/single-map.jpg"
+
+= render partial: 'shared/contact', locals: {to_email: @company.user.email}
 :javascript
   $(document).ready(function(){
     $('#mymap').gmap3(
