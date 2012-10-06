@@ -1,0 +1,5 @@
+%ul.links
+  %li= link_to 'Favorites This', favorite_company_path(company), class: 'favorite', title: 'Favorite This', id: company.user.email
+  %li= link_to 'Contact Firm', '#', class: 'contact', title: 'Contact Firm', id: company.user.email
+  %li= link_to "Firm's Website", '#', class: 'website', title: "Firm's Website"
+= link_to "<span class='wrapper'><img src='#{company.image(:medium)}' alt='pic'><h3>#{company.name}</h3><address>#{company.address}, #{company.city} #{company.state}</address><span>#{company.budget}</span><hr><span>#{company.primary_category}</span></span>".html_safe, company_path(company)
