@@ -1,0 +1,18 @@
+.hidden
+  = link_to 'contact', "#contact_form", class: 'fancybox', id: "open_fancybox"
+  #contact_form{style: 'width: 500px;'}
+    %h2 Send Email
+    ~ form_tag send_contact_path, class: 'validate' do
+      = hidden_field_tag :to_email, to_email
+      %ul
+        %li
+          %label{for: 'from_email'} Your Email
+          = text_field_tag :from_email, '',  class: 'required'
+        %li
+          %label{for: 'subject'} Subject
+          = text_field_tag :subject, '',  class: 'required'
+        %li
+          %label{for: 'content'} Your Messages
+          = text_area_tag :content, '',  class: 'required'
+        %li
+          = submit_tag 'Send'

@@ -34,6 +34,8 @@ SiftLaw::Application.routes.draw do
   get "favorites/index", as: "favorites"
   get 'home/index'
   
+  post "contacts/send_email", as: "send_contact"
+  
   match 'search' => 'home#search', as: "search"
   
   root :to => 'home#index'
