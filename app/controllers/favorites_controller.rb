@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
   def index
     @favorites = current_user.favorites
     @companies = @favorites.map(&:company)
-    @categories = @companies.map(&:primary_category)
+    @categories = @companies.map(&:primary_category).uniq
     @filter_nav = true
   end
   

@@ -18,7 +18,7 @@
         %li= link_to 'Any Category', search_path(city: @city, budget: @budget)
         - Common.categories.each do |category|
           %li= link_to category, search_path(city: @city, category: category, budget: @budget)
-        %li= link_to "<strong>See all locations</strong>".html_safe, '#'
+        %li= link_to "<strong>See all categories</strong>".html_safe, '#'
   for
   %span
     %strong= @budget ? @budget : (@company ? @company.budget : 'Any Budget')
