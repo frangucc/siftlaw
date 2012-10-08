@@ -4,7 +4,11 @@
     %ul
       %li= link_to "<span class='icon contact'></span>Contact".html_safe, "#contact_form", class: "fancybox"
       %li= link_to "<span class='icon print'></span>Print".html_safe, "#"
-      %li= link_to "<span class='icon favourite'></span>Favourite".html_safe, "#"
+      - if current_user && current_user.favorited?(@company)
+        %li= link_to "<span class='icon favorite'></span>Already favourited".html_safe, favorites_path
+      - else
+        %li= link_to "<span class='icon favorite'></span>Favourite".html_safe, favorite_company_path(@company), class: 'favorite', title: 'Favorite This'
+        
   .content
     = image_tag @company.image(:large), alt: '', class: 'main bordered'
     %p= simple_format @company.about
@@ -33,7 +37,7 @@
           %address= @company.address
           %hr
           %h4 Website:
-          = @company.website
+          = link_to @company.website, @company.website, target: '_blank'
           %br
           %h4 Email:
           = @company.user.email

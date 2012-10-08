@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   
   def favorited?(company)
-    self.favorites.include?(company)
+    return self.favorites.map(&:company).include?(company)
   end
   
   def self.recent(x)
