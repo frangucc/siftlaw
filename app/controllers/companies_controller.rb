@@ -1,10 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!, except: [:new, :create, :show]
   
-  def account
-  
-  end
-  
   def create
     @company = Company.new(params[:company])
     @portfolio_id = params[:portfolio_id]
@@ -42,11 +38,11 @@ class CompaniesController < ApplicationController
   end
   
   def portfolio
-    @company = current_user.company || Company.find(params[:id])
+    @company = current_user.company
   end
   
   def profile
-    @company = current_user.company || Company.find(params[:id])
+    @company = current_user.company
   end
   
   def show
@@ -55,7 +51,7 @@ class CompaniesController < ApplicationController
   end
   
   def update
-    @company = current_user.company || Company.find(params[:id])
+    @company = current_user.company
     if @company.update_attributes(params[:company])
       redirect_to profile_company_path(@company)
       flash[:notice] = "updated company profile successfully"
@@ -64,8 +60,5 @@ class CompaniesController < ApplicationController
       render :profile
     end
   end
-  
-  def upgrade
-  
-  end
+
 end

@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, only: [:delete_favorites]
+  before_filter :authenticate_user!, except: [:new, :create]
+  
   def delete_favorites
     current_user.favorites.delete_all
+    redirect_to root_path
+  end
+  
+  def destroy
+    @user = current_user
+    @user.destroy
+    sign_out(@user)
     redirect_to root_path
   end
   
@@ -25,4 +33,5 @@ class UsersController < ApplicationController
       render account_companies_path
     end
   end
+  
 end

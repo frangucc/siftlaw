@@ -30,5 +30,5 @@
       %h4.cancel
         = link_to 'Cancel my Siftlaw account', '#'
       %p There is no undo for cancellation. Once your account is cancelled, all of the information in your account will be permanently deleted. This cannot be reversed.
-      = link_to 'Cancel my account', "#", class: 'cancel'
+      = link_to 'Cancel my account', user_path(current_user), method: :delete, class: 'cancel'
   = render partial: '/companies/profile_side', locals: {active: 'setting'}
